@@ -7,79 +7,40 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
 
-    <body>
-        <h1>Hello world!</h1>
-        <form action="add_two_numbers">
-            1st number: <input type="number" name="number1"><br>
-            2nd number: <input type="number" name="number2"><br>
-            <input type="submit">
-        </form>
-        
-        <form style="width:80%; margin:auto;">
+    <body>        
+        <form style="width:80%; margin:auto;" action="calculate_market_cap" method="POST">
+            {% csrf_token %}
             <h1>Information about the bidder company</h1>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="bidderName">Company name</label>
-                <input type="text" class="form-control" id="bidderName">
+                <input type="text" class="form-control" name="bidderName" id="bidderName">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderSharesBefore">Number of shares before the deal</label>
-                <input type="number" min="0" class="form-control" id="bidderSharesBefore">
+                <input type="number" min="0" class="form-control" name="bidderSharesBefore" id="bidderSharesBefore">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderPriceBefore">Share price 1 day prior to announcement</label>
-                <input type="number" min="0" step="0.01" class="form-control" id="bidderPriceBefore">
+                <input type="number" min="0" step="0.01" class="form-control" name="bidderPriceBefore" id="bidderPriceBefore">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="bidderDailyReturn">Expected daily return during the bid period</label>
-                <input type="text" class="form-control" id="bidderDailyReturn">
+                <input type="text" class="form-control" name="bidderDailyReturn" id="bidderDailyReturn">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderDailyStd">Daily std of return during the bid period</label>
-                <input type="text" class="form-control" id="bidderDailyStd">
+                <input type="text" class="form-control" name="bidderDailyStd" id="bidderDailyStd">
                 </div>
             </div>
             <div class="form-group">
                 <label for="readyPremium">Maximum premium bidder is ready to pay, to the pre-announcement price</label>
-                <input type="text" class="form-control" id="readyPremium" placeholder="0.2">
+                <input type="text" class="form-control" name="readyPremium" id="readyPremium">
             </div>
-            <h1>Information about the target company</h1>
-            <div class="form-group">
-                <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="form-group">
-                <label for="inputAddress2">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                <label for="inputCity">City</label>
-                <input type="text" class="form-control" id="inputCity">
-                </div>
-                <div class="form-group col-md-4">
-                <label for="inputState">State</label>
-                <select id="inputState" class="form-control">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
-                </div>
-                <div class="form-group col-md-2">
-                <label for="inputZip">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    Check me out
-                </label>
-                </div>
-            </div>
-            <button type="submit" class="btn btn-primary">Sign in</button>
+            
+            <button type="submit" class="btn btn-primary">Calculate</button>
         </form>
     </body>
 

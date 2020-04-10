@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('add_two_numbers', views.add_two_numbers, name='add_two_numbers')
+    path('calculate_market_cap', views.calculate_market_cap, name='calculate_market_cap')
 ]
