@@ -1,0 +1,1 @@
+web: gunicorn collar_project.wsgi
