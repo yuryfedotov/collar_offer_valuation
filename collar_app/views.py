@@ -8,17 +8,6 @@ def index(request):
 
 def calculate_market_cap(request):
     
-    """ WORKED
-    company_name = str(request.POST.get("bidderName"))
-    nshares = int(request.POST.get("bidderSharesBefore"))
-    share_price = float(request.POST.get("bidderPriceBefore"))
-    market_cap = nshares * share_price
-    context = {
-        'company_name': company_name,
-        'market_cap': market_cap,
-    }
-    """
-    
     company_name = str(request.POST.get("bidderName"))
     nshares = int(request.POST.get("bidderSharesBefore"))
     share_price = float(request.POST.get("bidderPriceBefore"))
@@ -36,7 +25,13 @@ def calculate_market_cap(request):
     chart4 = figure()
     chart4.line([1,2], [nshares, share_price], line_width=2, line_color='purple')
 
-    grid = gridplot([[chart1, chart2, None], [chart3, None, chart4]], plot_width=300, plot_height=250)
+    chart5 = figure()
+    chart5.line([1,2], [nshares, share_price], line_width=2, line_color='orange')
+
+    chart6 = figure()
+    chart6.line([1,2], [nshares, share_price], line_width=2, line_color='yellow')
+
+    grid = gridplot([[chart1, chart2, chart3], [chart4, chart5, chart6]], plot_width=300, plot_height=250)
     script_grid, div_grid = components(grid)
 
     context = {
