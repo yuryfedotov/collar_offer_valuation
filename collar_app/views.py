@@ -124,7 +124,11 @@ def calculate_market_cap(request):
     FexNetWV = FexWVTT - FexWVBT # Net walkaway value to target
 
     """CHARTS CONTROLS"""
+    red = '#c20430'
+    green = '#00833f'
     blue = '#0071ce'
+    orange = '#f98e2b'
+    nbins = int(np.sqrt(simulations))
 
     """CHART 1"""
     chart1 = figure()
@@ -153,7 +157,7 @@ def calculate_market_cap(request):
     chart1_interval_span = BoxAnnotation(bottom=FexLB, top=FexUB, fill_alpha=0.1, fill_color=blue)
     chart1.add_layout(chart1_interval_span)
 
-    chart1_avgper_span = BoxAnnotation(left=T-avgper, right=T, fill_alpha=0.1, fill_color='red')
+    chart1_avgper_span = BoxAnnotation(left=T-avgper, right=T, fill_alpha=0.1, fill_color=red)
     chart1.add_layout(chart1_avgper_span)
 
     chart1.title.text = "1. Simulation modeling of bidder stock price"
@@ -164,7 +168,28 @@ def calculate_market_cap(request):
     
     """CHART 2"""
     chart2 = figure()
-    chart2.line([1,2], [3,4], line_width=2, line_color='red')
+
+    chart2_hist, chart2_edges = np.histogram(SBTeff_array, density=True, bins=nbins)
+    chart2.quad(top=chart2_hist, bottom=0, left=chart2_edges[:-1], right=chart2_edges[1:],
+                fill_color=red, line_color=red)
+
+    chart2_span = BoxAnnotation(left=FexLB, right=FexUB, fill_alpha=0.1, fill_color=blue)
+    chart2.add_layout(chart2_span)
+
+    chart2_upper_price_line = Span(location=FexUB,
+                                   dimension='height', line_color=blue, line_width=3)
+    chart2.add_layout(chart2_upper_price_line)
+
+    chart2_lower_price_line = Span(location=FexLB,
+                                   dimension='height', line_color=blue, line_width=3)
+    chart2.add_layout(chart2_lower_price_line)
+
+    chart2.title.text = "2. Effective price distibution"
+    chart2.xaxis.axis_label = 'Effective price'
+    chart2.yaxis.axis_label = 'Probability'
+    chart2.xgrid.grid_line_color = None
+    chart2.ygrid.grid_line_color = None
+    chart2.y_range.start = 0
 
     chart3 = figure()
     chart3.line([1,2], [3,4], line_width=2, line_color='green')
