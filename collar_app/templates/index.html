@@ -15,50 +15,50 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="bidderName">Company name</label>
-                <input type="text" class="form-control" name="bidderName" id="bidderName">
+                <input type="text" value="Disney" class="form-control" name="bidderName" id="bidderName">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderSharesBefore">Number of shares before the deal</label>
-                <input type="number" min="0" class="form-control" name="bidderSharesBefore" id="bidderSharesBefore">
+                <input type="number" min="0" value="1490776763" class="form-control" name="bidderSharesBefore" id="bidderSharesBefore">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderPriceBefore">Share price 1 day prior to announcement</label>
-                <input type="number" min="0" step="0.01" class="form-control" name="bidderPriceBefore" id="bidderPriceBefore">
+                <input type="number" min="0" step="0.01" value="107.15" class="form-control" name="bidderPriceBefore" id="bidderPriceBefore">
                 </div>
             </div>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="bidderDailyReturn">Expected daily return during the bid period</label>
-                <input type="text" class="form-control" name="bidderDailyReturn" id="bidderDailyReturn">
+                <input type="text" class="form-control" value="0.0007431" name="bidderDailyReturn" id="bidderDailyReturn">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="bidderDailyStd">Daily std of return during the bid period</label>
-                <input type="text" class="form-control" name="bidderDailyStd" id="bidderDailyStd">
+                <input type="text" class="form-control" value="0.0117901" name="bidderDailyStd" id="bidderDailyStd">
                 </div>
             </div>
             <div class="form-group">
                 <label for="readyPremium">Maximum premium the bidder is ready to pay, to the pre-announcement price</label>
-                <input type="text" class="form-control" name="readyPremium" id="readyPremium">
+                <input type="text" value="0.3" class="form-control" name="readyPremium" id="readyPremium">
             </div>
 
             <h2>Information about the target company</h2>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="targetName">Company name</label>
-                <input type="text" class="form-control" name="targetName" id="targetName">
+                <input type="text" value="20 Century Fox" class="form-control" name="targetName" id="targetName">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="targetSharesBefore">Number of shares before the deal</label>
-                <input type="number" min="0" class="form-control" name="targetSharesBefore" id="targetSharesBefore">
+                <input type="number" min="0" value="1383004590" class="form-control" name="targetSharesBefore" id="targetSharesBefore">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="targetPriceBefore">Share price 1 day prior to announcement</label>
-                <input type="number" min="0" step="0.01" class="form-control" name="targetPriceBefore" id="targetPriceBefore">
+                <input type="number" min="0" step="0.01" value="43.89" class="form-control" name="targetPriceBefore" id="targetPriceBefore">
                 </div>
             </div>
             <div class="form-group">
                 <label for="desiredPremium">Minimum premium desired by target, to the pre-announcement price</label>
-                <input type="text" class="form-control" name="desiredPremium" id="desiredPremium">
+                <input type="text" value="0.0823" class="form-control" name="desiredPremium" id="desiredPremium">
             </div>
 
             <h2>Information about the deal</h2>
@@ -66,11 +66,11 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                 <label for="daysBetween">Days between signing merger agreement and deal closing</label>
-                <input type="number" min="0" class="form-control" name="daysBetween" id="daysBetween">
+                <input type="number" min="0" value="183" class="form-control" name="daysBetween" id="daysBetween">
                 </div>
                 <div class="form-group col-md-6">
                 <label for="avgPer">Averaging period, days</label>
-                <input type="number" min="0" class="form-control" name="avgPer" id="avgPer">
+                <input type="number" min="0" value="15" class="form-control" name="avgPer" id="avgPer">
                 </div>
             </div>
             <div class="form-group">
@@ -84,30 +84,30 @@
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="baseER">Base exchange ratio, no collar</label>
-                <input type="number" min="0" step="0.0001" class="form-control" name="baseER" id="baseER">
+                <input type="text" value="0.5" class="form-control" name="baseER" id="baseER">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="fexLB">Lower bound of bidder price</label>
-                <input type="number" min="0" step="0.01" class="form-control" name="fexLB" id="fexLB">
+                <input type="text" value="94" class="form-control" name="fexLB" id="fexLB">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="fexUB">Upper bound of bidder price</label>
-                <input type="number" min="0" step="0.01" class="form-control" name="fexUB" id="fexUB">
+                <input type="text" value="114" class="form-control" name="fexUB" id="fexUB">
                 </div>
             </div>
             <h3>Fixed price deal settings</h3>
             <div class="form-row">
                 <div class="col-md-4 mb-3">
                 <label for="baseP">Base price of bidder's stock</label>
-                <input type="number" min="0" step="0.01" class="form-control" name="baseP" id="baseP">
+                <input type="text" value="51.572626" class="form-control" name="baseP" id="baseP">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="LR">Lower bound of exchange ratio</label>
-                <input type="number" min="0" step="0.0001" class="form-control" name="LR" id="LR">
+                <input type="text" value="0.4511" class="form-control" name="LR" id="LR">
                 </div>
                 <div class="col-md-4 mb-3">
                 <label for="UR">Upper bound of exchange ratio</label>
-                <input type="number" min="0" step="0.0001" class="form-control" name="UR" id="UR">
+                <input type="text" value="0.5514" class="form-control" name="UR" id="UR">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Calculate</button>
