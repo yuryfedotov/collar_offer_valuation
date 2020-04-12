@@ -9,7 +9,7 @@ import numpy as np
 def index(request):
     return render(request, 'index.html')
 
-def calculate_market_cap(request):
+def dashboard(request):
     
     # 1.1. Getting inputs
 
