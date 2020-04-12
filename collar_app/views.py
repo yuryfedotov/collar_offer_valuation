@@ -202,6 +202,14 @@ def calculate_market_cap(request):
     chart3.quad(top=chart3_hist_fex, bottom=0, left=chart3_edges_fex[:-1], right=chart3_edges_fex[1:],
                 fill_color=green, line_color=green, legend_label="With collar")
 
+    chart3_nocpttmean_line = Span(location=NocPTTmean, line_dash='dashed',
+                                  dimension='height', line_color=red, line_width=3)
+    chart3.add_layout(chart3_nocpttmean_line)
+
+    chart3_collarpttmean_line = Span(location=FexPTTmean, line_dash='dashed',
+                                  dimension='height', line_color=green, line_width=3)
+    chart3.add_layout(chart3_collarpttmean_line)
+
     chart3.title.text = "3. Collar's effect on payoff"
     chart3.xaxis.axis_label = 'Payoff to target, $'
     chart3.yaxis.axis_label = 'Probability'
@@ -246,8 +254,29 @@ def calculate_market_cap(request):
     chart5.yaxis[0].axis_label = "Target's stake"
 
     """CHART 6"""
-    chart6 = figure()
-    chart6.line([1,2], [3,4], line_width=2, line_color='yellow')
+    chart6 = figure(y_range=(0,0.2))
+
+    chart6_hist_nowa, chart6_edges_nowa = np.histogram(FexPTT, density=True, bins=nbins)
+    chart6.quad(top=chart6_hist_nowa, bottom=0, left=chart6_edges_nowa[:-1], right=chart6_edges_nowa[1:],
+                fill_color=red, line_color=red, legend_label="No WP")
+
+    chart6_hist_wa, chart6_edges_wa = np.histogram(FexWPPTT_Suc, density=True, bins=nbins)
+    chart6.quad(top=chart6_hist_wa, bottom=0, left=chart6_edges_wa[:-1], right=chart6_edges_wa[1:],
+                fill_color=green, line_color=green, legend_label="With WP")
+
+    chart6_collarpttmean_line = Span(location=FexPTTmean, line_dash='dashed',
+                                     dimension='height', line_color=red, line_width=3)
+    chart6.add_layout(chart6_collarpttmean_line)
+
+    chart6_wapttmean_line = Span(location=FexWPPTT_Suc_mean, line_dash='dashed',
+                                     dimension='height', line_color=green, line_width=3)
+    chart6.add_layout(chart6_wapttmean_line)
+
+    chart6.title.text = "6. Walkaway's effect on payoff"
+    chart6.xaxis.axis_label = 'Payoff to target, $'
+    chart6.yaxis.axis_label = 'Probability'
+    chart6.xgrid.grid_line_color = None
+    chart6.ygrid.grid_line_color = None
 
     grid = gridplot([[chart1, chart2, chart3], [chart4, chart5, chart6]], plot_width=420, plot_height=300)
     script_grid, div_grid = components(grid)
