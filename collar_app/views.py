@@ -2,7 +2,7 @@ from django.shortcuts import render
 from bokeh.plotting import figure
 from bokeh.layouts import gridplot
 from bokeh.embed import components
-from bokeh.models import Span, BoxAnnotation
+from bokeh.models import Span, BoxAnnotation, LinearAxis, Range1d
 from bokeh.palettes import Paired12
 import numpy as np
 
@@ -191,19 +191,50 @@ def calculate_market_cap(request):
     chart2.ygrid.grid_line_color = None
     chart2.y_range.start = 0
 
-    chart3 = figure()
-    chart3.line([1,2], [3,4], line_width=2, line_color='green')
+    """CHART 3"""
+    chart3 = figure(y_range=(0,0.2))
+    
+    chart3_hist_noc, chart3_edges_noc = np.histogram(NocPTT, density=True, bins=nbins)
+    chart3.quad(top=chart3_hist_noc, bottom=0, left=chart3_edges_noc[:-1], right=chart3_edges_noc[1:],
+                fill_color=red, line_color=red, legend_label="No collar")
 
+    chart3_hist_fex, chart3_edges_fex = np.histogram(FexPTT, density=True, bins=nbins)
+    chart3.quad(top=chart3_hist_fex, bottom=0, left=chart3_edges_fex[:-1], right=chart3_edges_fex[1:],
+                fill_color=green, line_color=green, legend_label="With collar")
+
+    chart3.title.text = "3. Collar's effect on payoff"
+    chart3.xaxis.axis_label = 'Payoff to target, $'
+    chart3.yaxis.axis_label = 'Probability'
+    chart3.xgrid.grid_line_color = None
+    chart3.ygrid.grid_line_color = None
+
+    """CHART 4"""
     chart4 = figure()
-    chart4.line([1,2], [3,4], line_width=2, line_color='purple')
+    chart4.y_range = Range1d(45, 59)
+    chart4.line(SBTeff_array, FexPTT, color = red, line_width=3)
 
+    chart4.extra_y_ranges = {"right": Range1d(start=0.2, end=1)}
+    chart4.add_layout(LinearAxis(y_range_name="right", axis_label='Exchange ratio', axis_label_text_color = green), 'right')
+
+    chart4.line(SBTeff_array, FexER, color = green, line_width=3, y_range_name="right")
+
+    chart4.add_layout(chart2_span)
+    chart4.add_layout(chart2_lower_price_line)
+    chart4.add_layout(chart2_upper_price_line)
+
+    chart4.title.text = "4. Payoff to target and exchange ratio"
+    chart4.xaxis.axis_label = 'Effective price'
+    chart4.yaxis[0].axis_label = 'Payoff to target, $'
+    chart4.yaxis[0].axis_label_text_color = red
+
+    """CHART 5"""
     chart5 = figure()
     chart5.line([1,2], [3,4], line_width=2, line_color='orange')
 
     chart6 = figure()
     chart6.line([1,2], [3,4], line_width=2, line_color='yellow')
 
-    grid = gridplot([[chart1, chart2, chart3], [chart4, chart5, chart6]], plot_width=380, plot_height=260)
+    grid = gridplot([[chart1, chart2, chart3], [chart4, chart5, chart6]], plot_width=420, plot_height=300)
     script_grid, div_grid = components(grid)
 
     context = {
