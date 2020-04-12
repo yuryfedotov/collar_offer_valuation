@@ -229,8 +229,23 @@ def calculate_market_cap(request):
 
     """CHART 5"""
     chart5 = figure()
-    chart5.line([1,2], [3,4], line_width=2, line_color='orange')
+    chart5.y_range = Range1d(0.2, 0.5)
+    chart5.line(SBTeff_array, FexStakeOfTarget, color = red, line_width=3)
 
+    chart5.extra_y_ranges = {"right": Range1d(start=400, end=800)}
+    chart5.add_layout(LinearAxis(y_range_name="right", axis_label='Emission volume'), 'right')
+
+    chart5.line(SBTeff_array, FexEmission / 1000000, y_range_name="right", alpha = 0)
+
+    chart5.add_layout(chart2_span)
+    chart5.add_layout(chart2_lower_price_line)
+    chart5.add_layout(chart2_upper_price_line)
+
+    chart5.title.text = "5. Consolidated company equity"
+    chart5.xaxis.axis_label = 'Effective price'
+    chart5.yaxis[0].axis_label = "Target's stake"
+
+    """CHART 6"""
     chart6 = figure()
     chart6.line([1,2], [3,4], line_width=2, line_color='yellow')
 
